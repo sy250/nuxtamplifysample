@@ -121,9 +121,9 @@
     },
     mixins: [mixin],
     created() {
-      console.log('created this =>', this);
-      console.log('created this.data =>', this.data);
-      console.log('created this.$store.loginUser =>', this.$store.state.loginUser);
+      // console.log('created this =>', this);
+      // console.log('created this.data =>', this.data);
+      // console.log('created this.$store.loginUser =>', this.$store.state.loginUser);
     },
     computed: {
       loginUser () {
@@ -135,14 +135,14 @@
     },
     methods: {
       onClose () {
-        console.log('alert=>', this.alert);
+        // console.log('alert=>', this.alert);
         if (!this.alert) {
           this.$router.push('/');
         }
       },
       onTableChange(item) {
-        console.log(item.value);
-        console.log(item);
+        // console.log(item.value);
+        // console.log(item);
         this.itemSelect = item.value;
         if (item.value) {
           this.item = item;
@@ -161,7 +161,7 @@
           };
           this.$store.dispatch('setNote', this.note);
         }
-        console.log(this.$store.state.note);
+        // console.log(this.$store.state.note);
       },
       linkToUpdate(itemSelect) {
         if (itemSelect) {
@@ -194,10 +194,10 @@
     },
     async fetch () {
       try {
-        console.log('this.$nuxt.context =>', this.$nuxt.context);
-        console.log('fetch this =>', this);
-        console.log('fetch this.user.username =>', this.user.username);
-        console.log('fetch this.$store.loginUser =>', this.$store.state.loginUser);
+        // console.log('this.$nuxt.context =>', this.$nuxt.context);
+        // console.log('fetch this =>', this);
+        // console.log('fetch this.user.username =>', this.user.username);
+        // console.log('fetch this.$store.loginUser =>', this.$store.state.loginUser);
         if (this.$store.state.loginState === 'signedin') {
           this.posts = this.$store.state.posts;
         }
@@ -205,8 +205,8 @@
           this.getRecords(this.$store.state.loginUser);
         }
         this.unsubscribeAuth = await onAuthUIStateChange((authState, authData) => {
-          console.log(authState);
-          console.log(authData);
+          // console.log(authState);
+          // console.log(authData);
           this.authState = authState;
           this.user = authData;
           if (authState === 'signedin' && authData) {
@@ -221,16 +221,16 @@
             this.getRecords(this.$store.state.loginUser);
           }
         })
-        console.log('fetch 2 this.user.username =>', this.user.username);
-        console.log('fetch this.$store.loginUser =>', this.$store.loginUser);
+        // console.log('fetch 2 this.user.username =>', this.user.username);
+        // console.log('fetch this.$store.loginUser =>', this.$store.loginUser);
       } catch (err) {
         console.log('error', this);
         this.signedIn = false;
       }
     },
     beforeDestroy() {
-      console.log('beforeDestroy');
-      console.log('beforDestroy this =>', this);
+      // console.log('beforeDestroy');
+      // console.log('beforDestroy this =>', this);
     },
   };
 </script>

@@ -81,7 +81,8 @@ export default {
   },
   
   env: {
-    apikey: 'da2-443uttud5rcxhgy7wkn5xoskuq'
+    apikey: '<your appsync api-key>',
+    graphqlendpoint: '<your appsync url>',
   }
   
 }

@@ -20,7 +20,7 @@ export const mutations = {
     state.loginState = status;
   },
   setNote(state, note) {
-    console.log(note);
+    // console.log(note);
     state.note.id = note.id;
     state.note.name = note.name;
     state.note.description = note.description;

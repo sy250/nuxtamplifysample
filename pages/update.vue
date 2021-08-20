@@ -68,14 +68,14 @@ export default {
   },
   methods: {
     onClose () {
-      console.log('alert=>', this.alert);
+      // console.log('alert=>', this.alert);
       if (!this.alert) {
         this.$router.push('/');
       }
     },
     async putRecord () {
-      console.log(this.name);
-      console.log(this.description);
+      // console.log(this.name);
+      // console.log(this.description);
       const APIKEY = process.env.apikey // set API-KEY
       const header = { // set Custom Header
         headers: {
@@ -83,14 +83,14 @@ export default {
           'x-api-key': APIKEY,
         }
       }
-      console.log(header);
+      // console.log(header);
       const query = { // set Query
         query: `mutation {updateNote(id: "${this.id}", record: {name: {value: "${this.name}"}, owner: {value: "${this.loginUser}"}, description: {value: "${this.description}"}}){revision}}`
       }
-      console.log(query);
-      const url = 'https://qb2txkpibjagrojauacuiradwe.appsync-api.ap-northeast-1.amazonaws.com/graphql';
+      // console.log(query);
+      const url = process.env.graphqlendpoint;
       const response = await this.$axios.post(url, query, header);
-      console.log(response);
+      // console.log(response);
       if (response.data.data.updateNote && response.status === 200) {
         this.message = `succsess: ${JSON.stringify(response.data)}`;
         this.alert = true;

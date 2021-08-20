@@ -29,14 +29,14 @@ export default {
           'x-api-key': APIKEY,
         }
       }
-      console.log(header);
+      // console.log(header);
       const query = { // set Query
         query: `query {listNotesForUser(owner:"${loginUser}"){records {id{value},name{value},description{value},owner{value}}}}`
       }
-      console.log(query);
-      const url = 'https://qb2txkpibjagrojauacuiradwe.appsync-api.ap-northeast-1.amazonaws.com/graphql';
+      // console.log(query);
+      const url = process.env.graphqlendpoint;
       const response = await this.$axios.post(url, query, header);
-      console.log(response);
+      // console.log(response);
       if (response.data.data.listNotesForUser) {
         const arrayPosts = response.data.data.listNotesForUser.records.map((k, i) => {
           return {
@@ -47,11 +47,11 @@ export default {
                   owner: k.owner.value,
           }
         });
-        console.log(arrayPosts);
+        // console.log(arrayPosts);
         this.posts = arrayPosts;
         this.$store.dispatch('setPosts', arrayPosts);
       } else {
-        console.log('Not posts data');
+        // console.log('Not posts data');
         this.posts = [];
         this.$store.dispatch('setPosts', []);
       }
@@ -64,14 +64,14 @@ export default {
           'x-api-key': APIKEY,
         }
       }
-      console.log(header);
+      // console.log(header);
       const query = { // set Query
         query: `mutation {deleteNote(ids:"${id}")}`
       }
-      console.log(query);
-      const url = 'https://qb2txkpibjagrojauacuiradwe.appsync-api.ap-northeast-1.amazonaws.com/graphql';
+      // console.log(query);
+      const url = process.env.graphqlendpoint;
       const response = await this.$axios.post(url, query, header);
-      console.log(response);
+      // console.log(response);
       if (response.data.data.deleteNote && response.status === 200) {
         console.log(`success: ${JSON.stringify(response.data)}`);
         return response;

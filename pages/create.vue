@@ -68,8 +68,8 @@ export default {
   },
   methods: {
     async postRecord () {
-      console.log(this.name);
-      console.log(this.description);
+      // console.log(this.name);
+      // console.log(this.description);
       const APIKEY = process.env.apikey // set API-KEY
       const header = { // set Custom Header
         headers: {
@@ -77,14 +77,14 @@ export default {
           'x-api-key': APIKEY,
         }
       }
-      console.log(header);
+      // console.log(header);
       const query = { // set Query
         query: `mutation {addNote(record: {name: {value: "${this.name}"}, owner: {value: "${this.loginUser}"}, description: {value: "${this.description}"}}){id, revision}}`
       }
-      console.log(query);
-      const url = 'https://qb2txkpibjagrojauacuiradwe.appsync-api.ap-northeast-1.amazonaws.com/graphql';
+      // console.log(query);
+      const url = process.env.graphqlendpoint;
       const response = await this.$axios.post(url, query, header);
-      console.log(response);
+      // console.log(response);
       if (response.data.data.addNote && response.status === 200) {
         this.message = `success: ${JSON.stringify(response.data)}`;
         this.alert = true;
